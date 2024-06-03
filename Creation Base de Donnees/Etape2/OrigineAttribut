@@ -1,0 +1,64 @@
+PORT(PortId, PortName, Country)
+Dans PORT :
+	- PortId, PortName, Country proviennent de l'application de la règle R0 à l'entité PORT et PortId est clé primaire parce qu'il représente l'identifiant de cette entité.
+
+
+PASSENGER(PassengerId, Name, Sex, Age, Survived, PClass, #PortId)
+Dans PASSENGER :
+	- PassengerId, Name, Sex, Age, Survived, PClass proviennent de l'application de la règle R0 à l'entité PASSENGER et PassengerId est clé primaire parce qu'il représente l'identifiant de cette entité.
+	- PortId est clé étrangère de l'entité PORT.
+	- PortId provient de l'application de la règle R1 à l'association BOARDING qui associe une et une seule occurence de l'entité PORT à une occurrence de l'entité PASSENGER (cardinalités 1.1).
+
+
+OCCUPATION(#PassengerId, CabinCode)
+Dans OCCUPATION :
+	- PassengerId est clé étrangère en tant qu'identifiant de l'entité PASSENGER.
+	- CabinCode est clé étrangère en tant qu'identifiant de l'entité CABIN.
+	- PassengerId, CabinCode sont hérités par R3 en tant que propriété propre de l'association OCCUPATION.
+	- PassengerId, Cabin sont clés primaires parce qu'ils représentent l'identifiant de cette association.
+	- PassengerId provient de l'application de la règle R3 à l'association OCCUPATION qui associe une et une seule occurence de l'entité PASSENGER à l'association OCCUPATION (cardinalités 0.n). 
+	- CabinCode provient de l'application de la règle R3 à l'association OCCUPATION qui associe une et une seule occurence de l'entité CabinCode à l'association OCCUPATION (cardinalités 0.n). 
+
+
+SERVICE(#PassengerId_Dom, #PassengerId_Emp, Role)
+Dans SERVICE :
+	- Role provient de l'application de la règle R0 à l'association SERVICE.
+	- PassengerId_Dom est clé étrangère en tant qu'identifiant de l'entité PASSENGER.
+	- PassengerId_Emp est clé étrangère en tant qu'identifiant de l'entité PASSENGER.
+	- PassengerId_Dom, PassengerId_Emp sont hérités par R2 en tant que propriété propre de l'association SERVICE.
+	- PassengerId_Dom est clé primaire parce qu'il représente l'identifiant de cette association.
+	- PassengerId_Dom, PassengerId_Emp proviennent de l'application de la règle R2 à l'association SERVICE qui associe deux occurences de l'entité PASSENGER à l'association SERVICE (cardinalités 0.1). 
+
+
+CATEGORY(LifeBoatCat, Structure, Places)
+Dans CATEGORY :
+	- LifeBoatCat, Structure, Places proviennent de l'application de la règle R0 à l'entité CATEGORY et LifeBoatCat est clé primaire parce qu'il représente l'identifiant de cette entité.
+
+
+LIFEBOAT(LifeBoatId, #LifeBoatCat, Side, Position, Location, Launching_Time)
+Dans LIFEBOAT :
+	- LifeBoat, Side, Position, Location proviennent de l'application de la règle R0 à l'entité LIFEBOAT et LifeBoatId est clé primaire parce qu'il représente l'identifiant de cette entité.
+	- LifeBoatCat est clé étrangère de l'association CATEGORY.
+	- Launching_Time est hérité par R1 en tant que propriété propre de cette entité.
+	- LifeBoatCat provient de l'application de la règle R1 à l'association CLASSIFICATION qui associe une et une seule occurence de l'entité CATEGORY à une occurrence de l'entité LIFEBOAT (cardinalités 1.1).
+	- Lauching_Time provient de l'application de la règle R1 à l'association LAUNCHING_TIME qui associe une et une seule occurence de l'entité OBSERVED_TIME à une occurrence de l'entité LIFEBOAT (cardinalités 1.1).
+
+
+RECOVERY(#LifeBoatId, Recovery_Time)
+Dans RECOVERY :
+	- LifeBoatId est clé étrangère en tant qu'identifiant de l'entité RECOVERY.
+	- LifeBoatId, Recovery_Time sont hérités par R2 en tant que propriété propre de l'association RECOVERY.
+	- LifeBoatId est clé primaire parce qu'il représente l'identifiant de cette association.
+	- LifeBoatId provient de l'application de la règle R2 à l'association RECOVERY qui associe une et une seule occurence de l'entité LIFEBOAT à l'association RECOVERY (cardinalités 0.1).
+	- Recovery_Time provient de l'application de la règle R2 à l'association RECOVERY qui associe une et une seule occurence de l'entité OBSERVED_TIME à l'association RECOVERY (cardinalités 0.1).
+
+
+RESCUE(#PassengerId, #LifeBoatId)
+Dans RESCUE :
+	- PassengersId, LifeBoatId sont clés étrangères en tant qu'identifiant de l'entité RESCUE.
+	- PassengerId, LifeBoatId sont hérités par R2 en tant que propriété propre de l'association RESCUE.
+	- PassengerId est clé primaire parce qu'il représente l'identifiant de cette association.
+	- PassengerId provient de l'application de la règle R2 à l'association RESCUE qui associe une et une seule occurence de l'entité PASSENGER à l'association RESCUE (cardinalités 0.1).
+	- LifeBoatId provient de l'application de la règle R2 à l'association RESCUE qui associe une et une seule occurence de l'entité LIFEBOAT à l'association RESCUE (cardinalités 0.1).
+	
+DROP TABLE PORT, PASSENGER, OCCUPATION, SERVICE, CATEGORY, LIFEBOAT, RECOVERY, RESCUE CASCADE;

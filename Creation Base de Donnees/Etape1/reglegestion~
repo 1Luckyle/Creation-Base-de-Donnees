@@ -1,0 +1,24 @@
+RG8 : On enregistre un canot par son type (standard, secours, radeau).
+
+RG9 : On enregistre un canot avec sa structure (bois ou bois et toile) et son nombre de place maximale.
+
+RG10 : On enregistre un canot avec son heure de mise à l'eau et son heure de récupération.
+
+RG11 : Un canot de sauvetage est identifié par son numéro d'identification et on enregistre sa position, son côté et sa localisation sur le navire.
+
+
+RG1 : Un port est identifié par son nom. On enregistre son numéro d'identification et son pays.
+
+RG2 : Un passager un lieu d'embarcation unique.
+
+RG3 : Un passager est identifié par son numéro d'identification. On enregistre son nom, son genre, son age, s'il possède un domestique (0 ou 1), s'il a survécu (0 ou 1) et son canot de sauvetage s'il en a un.
+
+RG4 : On enregistre un domestique avec son rôle et en lien avec son employeur unique.
+
+RG5 : Une donnée de séjour est identifié par le numéro de ticket. On enregistre la classe du passager et le prix de son ticket.
+
+RG6 : Un canot de sauvetage est identifié par son numéro d'identification (chiffre ou lettre). 
+
+RG7 : On enregistre dans pour un canot son type (standard, secours, radeau), sa structure (bois ou bois et toile), son nombre de place maximale, sa position (avant, arrière), son côté (babord, tribord), sa localisation sur le navire (pont, passerelle, toit).
+
+RG8 : On enregistre aussi pour un canot, son heure de mise à l'eau et son heure de récupération.
